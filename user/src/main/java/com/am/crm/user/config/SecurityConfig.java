@@ -1,4 +1,4 @@
-package com.am.crm.customer;
+package com.am.crm.user.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
