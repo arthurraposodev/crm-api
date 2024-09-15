@@ -1,0 +1,950 @@
+{
+	"info": {
+		"_postman_id": "ec599f67-285a-47b0-8e81-a1117afeeeea",
+		"name": "CRM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36275549"
+	},
+	"item": [
+		{
+			"name": "Admin Only",
+			"item": [
+				{
+					"name": "List Users",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Oisenha123@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "araposo",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "17pf795fffj3a2ucp64sevngp7oqdd18tgg2e4cc2vdrvd1hqnbd",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "29hd7aas4fr1dtma3su0cr2lvm",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Default",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Make User An Admin",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Oisenha123@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "araposo",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "17pf795fffj3a2ucp64sevngp7oqdd18tgg2e4cc2vdrvd1hqnbd",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "29hd7aas4fr1dtma3su0cr2lvm",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Default",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/users/example/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users",
+								"example",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a User",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Oisenha123@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "araposo",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "17pf795fffj3a2ucp64sevngp7oqdd18tgg2e4cc2vdrvd1hqnbd",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "29hd7aas4fr1dtma3su0cr2lvm",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Default",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"example2\",\r\n    \"email\":\"example@example.com\",\r\n    \"phoneNumber\":\"+5531971727073\",\r\n    \"temporaryPassword\":\"Oisenha123@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a User",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Oisenha123@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "araposo",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "17pf795fffj3a2ucp64sevngp7oqdd18tgg2e4cc2vdrvd1hqnbd",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "29hd7aas4fr1dtma3su0cr2lvm",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Default",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phoneNumber\": \"+5531971727073\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/users/araposo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users",
+								"araposo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Oisenha123@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "araposo",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "17pf795fffj3a2ucp64sevngp7oqdd18tgg2e4cc2vdrvd1hqnbd",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "29hd7aas4fr1dtma3su0cr2lvm",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Default",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/users/ads",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users",
+								"ads"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "These routes can only be accessed by users present in the \"admins\" group on AWS Cognito."
+		},
+		{
+			"name": "Any User",
+			"item": [
+				{
+					"name": "List Customers",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Oisenha123@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "araposo",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "17pf795fffj3a2ucp64sevngp7oqdd18tgg2e4cc2vdrvd1hqnbd",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "29hd7aas4fr1dtma3su0cr2lvm",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Default",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer By Id",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Oisenha123@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "araposo",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "17pf795fffj3a2ucp64sevngp7oqdd18tgg2e4cc2vdrvd1hqnbd",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "29hd7aas4fr1dtma3su0cr2lvm",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Default",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/customers/2ea86d8a-2b5f-4ef7-89ab-eb44d3c23015",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"customers",
+								"2ea86d8a-2b5f-4ef7-89ab-eb44d3c23015"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Customer",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Oisenha123@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "araposo",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "17pf795fffj3a2ucp64sevngp7oqdd18tgg2e4cc2vdrvd1hqnbd",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "29hd7aas4fr1dtma3su0cr2lvm",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Default",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John\",\r\n  \"surname\": \"Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Customer",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Oisenha123@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "araposo",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "17pf795fffj3a2ucp64sevngp7oqdd18tgg2e4cc2vdrvd1hqnbd",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "29hd7aas4fr1dtma3su0cr2lvm",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Default",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Bob\",\r\n  \"surname\": \"Wiskertooth\",\r\n  \"changePhoto\": \"false\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/customers/2ea86d8a-2b5f-4ef7-89ab-eb44d3c23015",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"customers",
+								"2ea86d8a-2b5f-4ef7-89ab-eb44d3c23015"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Customer",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "Oisenha123@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "araposo",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "17pf795fffj3a2ucp64sevngp7oqdd18tgg2e4cc2vdrvd1hqnbd",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "29hd7aas4fr1dtma3su0cr2lvm",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://arthurtesting.auth.us-east-2.amazoncognito.com/oauth2/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Default",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John\",\r\n  \"surname\": \"Doe\",\r\n  \"customerId\": \"CUST123456\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/customers/2ea86d8a-2b5f-4ef7-89ab-eb44d3c23015",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"customers",
+								"2ea86d8a-2b5f-4ef7-89ab-eb44d3c23015"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image to S3",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/arthu/Downloads/image (6).png"
+							}
+						},
+						"url": {
+							"raw": "https://crm-customer-images-prod-9e7f3a2b.s3.us-east-2.amazonaws.com/images/CUST123457.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240914T170107Z&X-Amz-SignedHeaders=host&X-Amz-Credential=AKIA2UC26NUMUONVNTNS%2F20240914%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Expires=900&X-Amz-Signature=eba3888d9e5dce6f4bf14b529aca3ec49bb6b5e3b50c606378b7634a46911602",
+							"protocol": "https",
+							"host": [
+								"crm-customer-images-prod-9e7f3a2b",
+								"s3",
+								"us-east-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"images",
+								"CUST123457.jpg"
+							],
+							"query": [
+								{
+									"key": "X-Amz-Algorithm",
+									"value": "AWS4-HMAC-SHA256"
+								},
+								{
+									"key": "X-Amz-Date",
+									"value": "20240914T170107Z"
+								},
+								{
+									"key": "X-Amz-SignedHeaders",
+									"value": "host"
+								},
+								{
+									"key": "X-Amz-Credential",
+									"value": "AKIA2UC26NUMUONVNTNS%2F20240914%2Fus-east-2%2Fs3%2Faws4_request"
+								},
+								{
+									"key": "X-Amz-Expires",
+									"value": "900"
+								},
+								{
+									"key": "X-Amz-Signature",
+									"value": "eba3888d9e5dce6f4bf14b529aca3ec49bb6b5e3b50c606378b7634a46911602"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "These routes can be accessed by any user that can authenticate on the AWS Cognito user pool."
+		},
+		{
+			"name": "Health Checks",
+			"item": [
+				{
+					"name": "Gateway",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "These health checks ensure the services are up and running and do not require authentication."
+		}
+	]
+}
