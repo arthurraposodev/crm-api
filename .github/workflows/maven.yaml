@@ -87,7 +87,7 @@ jobs:
         run: |
           ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
           REGION=us-east-1
-          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/customer-service:latest
+          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/customer-service:latest
       
           cd customer
           mvn spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
@@ -97,7 +97,7 @@ jobs:
         run: |
           ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
           REGION=us-east-1
-          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/gateway-service:latest
+          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/customer-service:latest
           
           cd ..
           cd gateway
@@ -108,7 +108,7 @@ jobs:
         run: |
           ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
           REGION=us-east-1
-          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/user-service:latest
+          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/customer-service:latest
           
           cd ..
           cd user
