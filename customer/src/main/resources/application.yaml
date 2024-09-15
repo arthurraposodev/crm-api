@@ -1,0 +1,27 @@
+aws:
+  s3:
+    bucket-name: ${AWS_BUCKET_NAME}
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+management:
+  endpoints:
+    web:
+      base-path: /customers/actuator
+server:
+  port: 8082
+spring:
+  application:
+    name: Customer API
+  docker:
+    compose:
+      lifecycle-management: start_and_stop
+  jackson:
+    default-property-inclusion: non_null
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${GATEWAY_ISSUER_URI}
