@@ -77,26 +77,47 @@ mvn clean install
 
 ## 🤖 Running the Application
 
-[//]: # (To run the application locally in production mode &#40;MySQL database 'database' necessary&#41;:)
-[//]: # (```bash)
-[//]: # (mvn spring-boot:run)
-[//]: # (```)
 To run the application locally (non-volatile docker compose PostgreSQL database automatically created):
 ```bash
-mvn spring-boot:run -Dspring-boot.run.profiles=dev
+mvn spring-boot:run
 ```
 
 After application has started up, the REST endpoints are exposed on port 8080 according to the OpenAPI 3 standard.
-
-[//]: # (and Swagger Web UI)
-[//]: # (is available on [SwaggerUI]&#40;http://localhost:8080/webjars/swagger-ui/index.html&#41;.)
 
 ### Example Postman Collection
 
 A Postman collection with example requests is also available in the project, inside example/. Link:
 [Postman Collection](example/postman_collection.json)
 
+## Authentication
+
+The API uses OAuth 2.0 for user authentication. To access the endpoints you must have a user account created by an admin
+and client credentials to access the API.
+
+Currently the only client approved for authentication is Postman.
+
+### How to use Postman for OAuth 2.0
+
+1. Open the Postman Collection and choose an endpoint.
+2. Navigate to the Authorization tab.
+3. Choose OAuth 2.0 from the dropdown.
+4. Scroll down to Configure New Token.
+5. Fill in the following fields (ask the development team for these details):
+    - Token Name: Any
+    - Grant Type: Authorization Code
+    - Authorize Using Browser
+    - Auth URL
+    - Access Token URL
+    - Client ID
+    - Client Secret
+6. Click Get New Access Token.
+7. A new window will open in your browser. Log in with your user credentials.
+8. After logging in, you will be redirected to postman (approve pop up and redirect) with a code.
+9. Postman should autoexchange the authorization code for a usable access token.
+10. Select the token from the dropdown whenever you want to make a request.
+
 ## Screenshots
+
 ### Creating a new User
 
 ### Creating a new Customer
