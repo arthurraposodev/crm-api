@@ -52,6 +52,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Install parent de pendencies
+        run: mvn clean install -N
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -74,16 +77,37 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build and tag Docker images
+      - name: Build and Push Docker image to ECR - Customer
         run: |
-          IMAGE_NAME=user/repository_name
-          docker buildx build --platform linux/amd64 --cache-from=type=local,src=/tmp/.buildx-cache --cache-to=type=local,dest=/tmp/.buildx-cache --tag $IMAGE_NAME:${{ github.sha }} .
+          ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+          REGION=us-east-1
+          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/customer-service:latest
+      
+          cd customer
+          mvn spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
+          docker push $IMAGE_NAME
 
-      - name: Push Docker image to ECR
+      - name: Build and Push Docker image to ECR - Gateway
         run: |
-          docker tag $IMAGE_NAME:${{ github.sha }} $IMAGE_NAME:latest
-          docker push $IMAGE_NAME:${{ github.sha }}
-          docker push $IMAGE_NAME:latest
+          ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+          REGION=us-east-1
+          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/gateway-service:latest
+          
+          cd ..
+          cd gateway
+          mvn spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
+          docker push $IMAGE_NAME
+
+      - name: Build and Push Docker image to ECR - User
+        run: |
+          ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+          REGION=us-east-1
+          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/user-service:latest
+          
+          cd ..
+          cd user
+          mvn spring-boot:build-image -Dspring-boot.build-image.imageName=$IMAGE_NAME
+          docker push $IMAGE_NAME
 
   deploy-dev:
     name: Deploy to ECS dev cluster
