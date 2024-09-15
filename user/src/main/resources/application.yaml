@@ -1,0 +1,17 @@
+USER_POOL_ID: ${COGNITO_USER_POOL}
+server:
+  port: 8081
+spring:
+  application:
+    name: user
+  jackson:
+    default-property-inclusion: non_null
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${GATEWAY_ISSUER_URI}
+management:
+  endpoints:
+    web:
+      base-path: /users/actuator

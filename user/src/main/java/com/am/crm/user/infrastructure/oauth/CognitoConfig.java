@@ -1,4 +1,4 @@
-package com.am.crm.user.config;
+package com.am.crm.user.infrastructure.oauth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.am.crm.user.config;
+package com.am.crm.user.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("actuator/health").permitAll()
-                                .anyRequest().authenticated()
+                                .anyRequest().hasAuthority("GROUP_admins")
                 )
                 // Enable JWT validation using OAuth2 Resource Server
                 .oauth2ResourceServer(oauth2 -> oauth2
