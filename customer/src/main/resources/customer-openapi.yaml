@@ -1,0 +1,215 @@
+openapi: 3.0.1
+info:
+  title: Customer API
+  description: API for managing customer data
+  version: 1.0.0
+servers:
+  - url: http://localhost:8082
+    description: Local server
+
+paths:
+  /v1/customers:
+    get:
+      summary: List all customers
+      operationId: listCustomers
+      responses:
+        '200':
+          description: A list of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerQuery'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Create a new customer
+      operationId: createCustomer
+      requestBody:
+        description: Customer creation payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerCommand'
+      responses:
+        '201':
+          description: Customer created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerQuery'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/customers/{customerId}:
+    get:
+      summary: Get customer by ID
+      operationId: getCustomerById
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Customer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerQuery'
+        '400':
+          description: Invalid id format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+            description: Customer not found
+            content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      summary: Update an existing customer
+      operationId: updateCustomer
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Customer update payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomerCommand'
+      responses:
+        '200':
+          description: Customer updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerQuery'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      summary: Delete customer by Customer Id
+      operationId: deleteCustomer
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Customer deleted successfully
+        '400':
+          description: Invalid id format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CreateCustomerCommand:
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+      required:
+        - name
+        - surname
+
+    UpdateCustomerCommand:
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        changePhoto:
+          type: boolean
+
+    CustomerQuery:
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        customerId:
+          type: string
+        photoUrl:
+          type: string
+        updatedAt:
+          type: string
+        updatedBy:
+          type: string
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        message:
+          type: string
+        errorCode:
+          type: integer
+        details:
+          type: array
+          items:
+            type: string

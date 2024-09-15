@@ -1,4 +1,4 @@
-package com.am.crm.customer;
+package com.am.crm.customer.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,30 +16,27 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                // Authorize requests based on the JWT token
-                .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("actuator/health").permitAll()
-                                .anyRequest().authenticated()
+    public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
+        return http
+                // Authorize requests based on JWT tokens
+                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers("/customers/actuator/health").permitAll()  // Allow public access to health check
+                        .anyRequest().authenticated()  // Authenticate all other requests
                 )
                 // Enable JWT validation using OAuth2 Resource Server
-                .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
-                .csrf(AbstractHttpConfigurer::disable);  // Disable CSRF for stateless APIs
-
-        return http.build();
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
+                .csrf(AbstractHttpConfigurer::disable)  // Disable CSRF for stateless API
+                .build();
     }
 
     // JWT Converter to map Cognito groups to Spring Security roles
     private JwtAuthenticationConverter jwtAuthenticationConverter() {
-        JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-        // Map Cognito groups to Spring Security roles
+        final JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+        // Map Cognito groups to Spring Security roles with "GROUP_" prefix
         grantedAuthoritiesConverter.setAuthorityPrefix("GROUP_");
         grantedAuthoritiesConverter.setAuthoritiesClaimName("cognito:groups");
 
-        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        final JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
         return jwtAuthenticationConverter;
     }
