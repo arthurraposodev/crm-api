@@ -1,4 +1,4 @@
-package com.am.crm.gateway;
+package com.am.crm.gateway.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,6 @@ public class SecurityConfig {
         http.authorizeExchange(exchanges -> exchanges
                         // Permit all access to /customers/hello
                         .pathMatchers("/actuator/health").permitAll()  // Allow unauthenticated access to /actuator/health
-                        .pathMatchers("/customers/hello").authenticated()
 
                         // Authenticate other routes
                         .anyExchange().permitAll())
