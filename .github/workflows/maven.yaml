@@ -97,7 +97,7 @@ jobs:
         run: |
           ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
           REGION=us-east-1
-          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/customer-service:latest
+          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/gateway-service:latest
           
           cd ..
           cd gateway
@@ -108,7 +108,7 @@ jobs:
         run: |
           ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
           REGION=us-east-1
-          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/customer-service:latest
+          IMAGE_NAME=$ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/user-service:latest
           
           cd ..
           cd user
