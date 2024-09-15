@@ -22,25 +22,12 @@ spring:
         - id: user-service
           uri: http://localhost:8081
           predicates:
-            - Path=/users/**
-          filters:
-            - StripPrefix=1
+            - Path=/users/**,/v1/users/**
         - id: customer-service
           uri: http://localhost:8082
           predicates:
-            - Path=/customers/**
-          filters:
-            - StripPrefix=1
+            - Path=/customers/**,/v1/customers/**
 logging:
   level:
     org.springframework.security: DEBUG
     org.springframework.cloud.gateway: DEBUG
-server:
-  servlet:
-    session:
-      cookie:
-        same-site: lax
-  reactive:
-    session:
-      cookie:
-        same-site: lax
