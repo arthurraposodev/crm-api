@@ -35,9 +35,6 @@ public class Customer {
     @Column(name = "customer_id", unique = true, nullable = false, updatable = false)
     private UUID customerId;
 
-    @Column(name = "photo_key")
-    private String photoKey;
-
     @NotBlank(message = "Created by is required")
     @Column(name = "created_by", nullable = false, updatable = false)
     private String createdBy;

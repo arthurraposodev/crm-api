@@ -23,12 +23,12 @@ public class CreateCustomerHandler {
 
         final Customer savedCustomer = customerRepository.save(customer);
         var customerQuery = customerMapper.toDto(savedCustomer);
-        generatePhotoUrl(customer.getPhotoKey(), customerQuery);
+        generatePhotoUrl(customer.getCustomerId(), customerQuery);
         return customerQuery;
     }
 
-    private void generatePhotoUrl(String photoKey, CustomerQuery customerQuery) {
-        final String preSignedUrl = fileStorageHandler.generatePresignedPutUrl(photoKey);
+    private void generatePhotoUrl(UUID customerId, CustomerQuery customerQuery) {
+        final String preSignedUrl = fileStorageHandler.generatePresignedPutUrl(customerId);
         customerQuery.setPhotoUrl(preSignedUrl);
     }
 
@@ -39,13 +39,8 @@ public class CreateCustomerHandler {
         customer.setCreatedBy(username);
         customer.setUpdatedBy(username);
         customer.setCustomerId(UUID.randomUUID());
-        customer.setPhotoKey(generatePhotoKey(customer.getCustomerId()));
 
         return customer;
-    }
-
-    private String generatePhotoKey(final UUID customerId) {
-        return String.format("images/%s.jpg", customerId);
     }
 
 }

@@ -46,7 +46,6 @@ class GetCustomerByIdHandlerTest {
         customer.setCustomerId(UUID.fromString(customerId));
         customer.setName("John");
         customer.setSurname("Doe");
-        customer.setPhotoKey("photo-key");
 
         CustomerQuery customerQuery = new CustomerQuery();
         customerQuery.setCustomerId(customerId);
@@ -56,7 +55,7 @@ class GetCustomerByIdHandlerTest {
 
         when(customerRepository.findCustomerByCustomerId(any(UUID.class))).thenReturn(Optional.of(customer));
         when(customerMapper.toDto(any(Customer.class))).thenReturn(customerQuery);
-        when(fileStorageHandler.generatePresignedGetUrl(anyString())).thenReturn("http://presigned-url");
+        when(fileStorageHandler.generatePresignedGetUrl(any())).thenReturn("http://presigned-url");
 
         // Act
         CustomerQuery result = getCustomerByIdHandler.handle(customerId);
@@ -70,7 +69,7 @@ class GetCustomerByIdHandlerTest {
 
         verify(customerRepository).findCustomerByCustomerId(UUID.fromString(customerId));
         verify(customerMapper).toDto(customer);
-        verify(fileStorageHandler).generatePresignedGetUrl("photo-key");
+        verify(fileStorageHandler).generatePresignedGetUrl(UUID.fromString(result.getCustomerId()));
     }
 
     @Test
@@ -84,7 +83,7 @@ class GetCustomerByIdHandlerTest {
 
         verify(customerRepository).findCustomerByCustomerId(UUID.fromString(customerId));
         verify(customerMapper, never()).toDto(any(Customer.class));
-        verify(fileStorageHandler, never()).generatePresignedGetUrl(anyString());
+        verify(fileStorageHandler, never()).generatePresignedGetUrl(any());
     }
 
     @Test
@@ -97,7 +96,7 @@ class GetCustomerByIdHandlerTest {
 
         verify(customerRepository, never()).findCustomerByCustomerId(any(UUID.class));
         verify(customerMapper, never()).toDto(any(Customer.class));
-        verify(fileStorageHandler, never()).generatePresignedGetUrl(anyString());
+        verify(fileStorageHandler, never()).generatePresignedGetUrl(any(UUID.class));
     }
 
     @Test
@@ -108,7 +107,6 @@ class GetCustomerByIdHandlerTest {
         customer.setCustomerId(UUID.fromString(customerId));
         customer.setName("John");
         customer.setSurname("Doe");
-        customer.setPhotoKey(null);
 
         CustomerQuery customerQuery = new CustomerQuery();
         customerQuery.setCustomerId(customerId);
@@ -131,6 +129,5 @@ class GetCustomerByIdHandlerTest {
 
         verify(customerRepository).findCustomerByCustomerId(UUID.fromString(customerId));
         verify(customerMapper).toDto(customer);
-        verify(fileStorageHandler, never()).generatePresignedGetUrl(anyString());
     }
 }
