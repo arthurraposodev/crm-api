@@ -15,7 +15,6 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http.authorizeExchange(exchanges -> exchanges
-                        // Permit all access to /customers/hello
                         .pathMatchers("/actuator/health").permitAll()  // Allow unauthenticated access to /actuator/health
 
                         // Authenticate other routes
