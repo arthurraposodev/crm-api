@@ -132,9 +132,9 @@ jobs:
 
       - name: Deploy to ECS dev cluster
         run: |
-          CLUSTER_NAME=your-dev-cluster
-          SERVICE_NAME=your-dev-service
-          TASK_DEFINITION=your-task-def
+          CLUSTER_NAME=ecs-crm-dev-2
+          SERVICE_NAME=gateway-service
+          TASK_DEFINITION=gateway
 
           aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
 
