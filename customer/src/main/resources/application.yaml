@@ -6,10 +6,6 @@ logging:
     org:
       springframework:
         security: DEBUG
-management:
-  endpoints:
-    web:
-      base-path: /actuator
 server:
   port: 8082
 spring:
