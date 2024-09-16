@@ -2,3 +2,7 @@ spring:
   docker:
     compose:
       enabled: false
+  datasource:
+    url: jdbc:postgresql://crm.cbmm2oikymwh.us-east-2.rds.amazonaws.com:5432/crm
+    username: dbadmin
+    password: W5xBhw9Ikeycrn1rwOTn
