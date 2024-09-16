@@ -19,19 +19,19 @@ public class ListCustomersHandler {
     public List<CustomerQuery> handle() {
         final List<Customer> customers = customerRepository.findAll();
 
-        customers.forEach(this::attachPreSignedUrlToCustomer);
-
-        return mapCustomersToDto(customers);
+        return mapCustomersToDtos(customers);
     }
 
-    private void attachPreSignedUrlToCustomer(final Customer customer) {
-        final String preSignedUrl = fileStorageHandler.generatePresignedGetUrl(customer.getPhotoKey());
-        customer.setPhotoKey(preSignedUrl);  // Replace the object key with the pre-signed URL for response
-    }
-
-    private List<CustomerQuery> mapCustomersToDto(final List<Customer> customers) {
+    private List<CustomerQuery> mapCustomersToDtos(final List<Customer> customers) {
         return customers.stream()
-                .map(customerMapper::toDto)
+                .map(this::mapCustomerToDtoWithPhotoUrl)
                 .toList();
+    }
+
+    private CustomerQuery mapCustomerToDtoWithPhotoUrl(final Customer customer) {
+        CustomerQuery customerQuery = customerMapper.toDto(customer);
+        String preSignedUrl = fileStorageHandler.generatePresignedGetUrl(customer.getCustomerId());
+        customerQuery.setPhotoUrl(preSignedUrl);
+        return customerQuery;
     }
 }

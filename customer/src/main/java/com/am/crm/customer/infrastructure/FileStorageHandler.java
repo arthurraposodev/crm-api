@@ -1,6 +1,8 @@
 package com.am.crm.customer.infrastructure;
 
+import java.util.UUID;
+
 public interface FileStorageHandler {
-    String generatePresignedPutUrl(String objectKey);
-    String generatePresignedGetUrl(String objectKey);
+    String generatePresignedPutUrl(UUID customerId);
+    String generatePresignedGetUrl(UUID customerId);
 }
