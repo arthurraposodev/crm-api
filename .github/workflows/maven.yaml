@@ -149,7 +149,7 @@ jobs:
       - name: Deploy to ECS dev cluster - User
         run: |
           CLUSTER_NAME=ecs-crm-dev-2
-          SERVICE_NAME=user
+          SERVICE_NAME=user-service
           TASK_DEFINITION=user
 
           aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
