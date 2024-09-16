@@ -42,7 +42,8 @@ public class CognitoService implements OAuthService {
                 .userPoolId(userPoolId)
                 .username(username)
                 .temporaryPassword(temporaryPassword)
-                .userAttributes(AttributeType.builder().name("phone_number").value(phone).name("email").value(email).build())
+                .userAttributes(AttributeType.builder().name("phone_number").value(phone).build(),
+                        AttributeType.builder().name("email").value(email).build())
                 .build();
 
         AdminCreateUserResponse response = cognitoClient.adminCreateUser(request);
@@ -74,7 +75,7 @@ public class CognitoService implements OAuthService {
     public UserQuery updateUserAttributes(String username, Map<String, String> attributes) {
         List<AttributeType> updatedAttributes = attributes.entrySet().stream()
                 .map(entry -> AttributeType.builder().name(entry.getKey()).value(entry.getValue()).build())
-                .collect(Collectors.toList());
+                .toList();
 
         AdminUpdateUserAttributesRequest request = AdminUpdateUserAttributesRequest.builder()
                 .userPoolId(userPoolId)
