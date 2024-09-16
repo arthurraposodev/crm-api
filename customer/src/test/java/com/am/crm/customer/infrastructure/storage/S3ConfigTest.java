@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,9 +33,10 @@ class S3ConfigTest {
 
         // Verify the credentials provider
         Object credentialsProvider = ReflectionTestUtils.getField(s3Presigner, "credentialsProvider");
-        assertTrue(credentialsProvider instanceof EnvironmentVariableCredentialsProvider);
+        assertInstanceOf(EnvironmentVariableCredentialsProvider.class, credentialsProvider);
     }
 
+    //As this is non-Spring-managed test
     @Test
     void s3Presigner_ShouldCreateNewInstanceOnEachCall() {
         // Act
@@ -45,5 +47,18 @@ class S3ConfigTest {
         assertNotNull(s3Presigner1);
         assertNotNull(s3Presigner2);
         assertNotSame(s3Presigner1, s3Presigner2);
+    }
+
+    //As this is non-Spring-managed test
+    @Test
+    void s3Client_ShouldCreateNewInstanceOnEachCall() {
+        // Act
+        S3Client s3Client1 = s3Config.s3Client();
+        S3Client s3Client2 = s3Config.s3Client();
+
+        // Assert
+        assertNotNull(s3Client1);
+        assertNotNull(s3Client2);
+        assertNotSame(s3Client1, s3Client2);
     }
 }
