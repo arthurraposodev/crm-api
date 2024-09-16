@@ -5,7 +5,7 @@
 <h3>◦ Simplified customer interactions. Close more deals.</h3>
 <h3>◦ Developed with the software and tools below.</h3>
     
-<img src="https://github.com/arthurraposodev/crm-api/actions/workflows/maven.yml/badge.svg" alt="buildBadge" />
+<img src="https://github.com/arthurraposodev/crm-api/actions/workflows/maven.yaml/badge.svg" alt="buildBadge" />
 <p align="center">
 <img src="https://img.shields.io/badge/YAML-CB171E.svg?style=flat-square&logo=YAML&logoColor=white" alt="YAML" />
 <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=flat-square&logo=GitHub-Actions&logoColor=white" alt="GitHub%20Actions" />
