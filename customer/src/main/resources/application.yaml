@@ -14,6 +14,10 @@ spring:
   docker:
     compose:
       lifecycle-management: start_and_stop
+      file: ../compose.yaml
+  jpa:
+    hibernate:
+      ddl-auto: create
   jackson:
     default-property-inclusion: non_null
   security:
