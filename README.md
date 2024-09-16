@@ -11,7 +11,6 @@
 <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=flat-square&logo=GitHub-Actions&logoColor=white" alt="GitHub%20Actions" />
 <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=flat-square&logo=openjdk&logoColor=white" alt="java" />
 </p>
-<img src="https://img.shields.io/github/license/arthurraposodev/crm-api?style=flat-square&color=5D6D7E" alt="GitHub license" />
 <img src="https://img.shields.io/github/last-commit/arthurraposodev/crm-api?style=flat-square&color=5D6D7E" alt="git-last-commit" />
 <img src="https://img.shields.io/github/commit-activity/m/arthurraposodev/crm-api?style=flat-square&color=5D6D7E" alt="GitHub commit activity" />
 <img src="https://img.shields.io/github/languages/top/arthurraposodev/crm-api?style=flat-square&color=5D6D7E" alt="GitHub top language" />
@@ -53,6 +52,8 @@ It's designed for scalable CRUD operations on customers and OAuth 2.0 users.
 - Spring WebMVC
 - Contract-First Swagger CodeGen with OpenAPI 3 Standard
 - Github Actions CI with "Build Pass" Badge
+- CI/CD on AWS ECS with Docker
+- Paketo Buildpack
 - Readme
 ---
 ## 🚀 Getting Started
