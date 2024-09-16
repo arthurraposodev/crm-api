@@ -14,4 +14,4 @@ spring:
 management:
   endpoints:
     web:
-      base-path: /users/actuator
+      base-path: /actuator
