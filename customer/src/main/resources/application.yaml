@@ -20,4 +20,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${GATEWAY_ISSUER_URI}
+          issuer-uri: ${ISSUER_URI}
