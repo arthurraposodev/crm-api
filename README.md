@@ -336,23 +336,23 @@ Currently, the only client approved for authentication is Postman.
 
 ### Getting all Users
 
-![img_1.png](getUsers.png)
+![img_1.png](docs/getUsers.png)
 
 ### Creating a new Customer
 
-![img_1.png](createCustomer.png)
+![img_1.png](docs/createCustomer.png)
 
 ### Uploading Photo to S3
 
-![img_1.png](uploadImage.png)
+![img_1.png](docs/uploadImage.png)
 
 ### Getting all Customers
 
-![img_1.png](gettingCustomers.png)
+![img_1.png](docs/gettingCustomers.png)
 
 ### Accessing Url of Image from Getting All Customer's Last Entry (Only Available for 15 Minutes - Presigned)
 
-![img_1.png](duck.png)
+![img_1.png](docs/duck.png)
 
 ## 📂 Repository Structure
 
@@ -404,8 +404,8 @@ cd customer
 mvn test
 ```
 
-![img_1.png](customerTest.png)
-![img_1.png](userTest.png)
+![img_1.png](docs/customerTest.png)
+![img_1.png](docs/userTest.png)
 ---
 
 ## 🤝 Contributing
