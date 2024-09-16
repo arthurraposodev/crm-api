@@ -20,11 +20,11 @@ spring:
         response-timeout: 60000  # 60 seconds
       routes:
         - id: user-service
-          uri: http://localhost:8081
+          uri: ${SERVER_URI}:8081
           predicates:
             - Path=/users/**,/v1/users/**
         - id: customer-service
-          uri: http://localhost:8082
+          uri: ${SERVER_URI}:8082
           predicates:
             - Path=/customers/**,/v1/customers/**
 logging:
