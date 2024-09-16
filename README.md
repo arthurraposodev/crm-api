@@ -60,8 +60,8 @@ It's designed for scalable CRUD operations on customers and OAuth 2.0 users.
 
 ## 🔨 Architecture
 
-The CRM API is a microservices architecture with three services: Gateway, User, and Customer. Each service is a Spring Boot application with its own responsibilities.
-Each Spring Boot Application is built with Maven and uses Spring WebMVC for RESTful API endpoints.
+The CRM API is a microservices architecture with three services: Gateway, User, and Customer. Each Spring Boot Application 
+is built with Maven and uses Spring WebMVC for RESTful API endpoints.
 
 The Gateway service is the entry point for all requests. It routes requests to the appropriate service based on the URL path.
 
@@ -80,7 +80,7 @@ and server in many different programming languages.
 The API is defined in the openapi.yaml specification file in the resources of each module. When the generate-sources goal
 is called or the maven module is recompiled, the specification is read by the openapi-generator-maven-plugin and classes 
 defined through the specification, DTOs and web layer classes, are generated in the target folder. These can then be used 
-regularly by the code base. On any change, the specification can be updated and the code regenerated. This ensures an always 
+regularly by the codebase. On any change, the specification can be updated and the code regenerated. This ensures an always 
 updated API contract.
 
 The API endpoints are also versioned for easy maintenance and updates.
@@ -137,7 +137,7 @@ Hosted UI is due to offloading the maintenance and security vulnerabilities to A
 customizable channel.
 - The user service can only be accessed by admins.
 - The customer service can be accessed by any authenticated user.
-- Health endpoints are public for all three endpoints.
+- Health endpoints are public for all three services.
 
 Authentication is managed centrally by Spring Cloud Gateway, while authorization is managed by the services themselves through
 the use of Spring Security and the Cognito issuer, acting as resource servers.
@@ -385,9 +385,7 @@ Currently, the only client approved for authentication is Postman.
 ---
 ## 🧪 Tests
 Test folders follow the same structure as source folders. This project respects an 80% code coverage target (excluding generated classes).
-```bash
-cd gateway
-```
+
 ### Gateway
 ```bash
 cd gateway
@@ -404,7 +402,9 @@ cd customer
 mvn test
 ```
 
+### Coverage Report for Customer Service
 ![img_1.png](docs/customerTest.png)
+### Coverage Report for User Service
 ![img_1.png](docs/userTest.png)
 ---
 
