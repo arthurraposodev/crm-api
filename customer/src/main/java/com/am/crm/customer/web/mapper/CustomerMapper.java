@@ -11,7 +11,6 @@ public interface CustomerMapper {
 
     @Mapping(target = "updatedBy", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "photoKey", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "customerId", ignore = true)
     @Mapping(target = "createdBy", ignore = true)
