@@ -694,7 +694,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"name\": \"John\",\r\n  \"surname\": \"Doe\"\r\n}",
+									"raw": "{\r\n  \"name\": \"John\",\r\n  \"surname\": \"Doe2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1095,7 +1095,7 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "http://lb-crm-1043490261.us-east-2.elb.amazonaws.com:8080/v1/users/example/admin",
+									"raw": "http://lb-crm-1043490261.us-east-2.elb.amazonaws.com:8080/v1/users/admin/admin",
 									"protocol": "http",
 									"host": [
 										"lb-crm-1043490261",
@@ -1108,7 +1108,7 @@
 									"path": [
 										"v1",
 										"users",
-										"example",
+										"admin",
 										"admin"
 									]
 								}
@@ -1177,7 +1177,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\":\"ludmila\",\r\n    \"email\":\"example@example.com\",\r\n    \"phoneNumber\":\"+5531971727073\",\r\n    \"temporaryPassword\":\"Oisenha123@\"\r\n}",
+									"raw": "{\r\n    \"username\":\"admin\",\r\n    \"email\":\"admin@example.com\",\r\n    \"phoneNumber\":\"+31902189900\",\r\n    \"temporaryPassword\":\"Password123@\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1687,7 +1687,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"name\": \"Bob\",\r\n  \"surname\": \"Wiskertooth\",\r\n  \"changePhoto\": \"false\"\r\n}",
+									"raw": "{\r\n  \"name\": \"John\",\r\n  \"surname\": \"Doe\",\r\n  \"changePhoto\": \"true\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1695,7 +1695,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://lb-crm-1043490261.us-east-2.elb.amazonaws.com:8080/v1/customers/2ea86d8a-2b5f-4ef7-89ab-eb44d3c23015",
+									"raw": "http://lb-crm-1043490261.us-east-2.elb.amazonaws.com:8080/v1/customers/2c524069-8a6e-4c0c-b980-e0cd7ce4d470",
 									"protocol": "http",
 									"host": [
 										"lb-crm-1043490261",
@@ -1708,7 +1708,7 @@
 									"path": [
 										"v1",
 										"customers",
-										"2ea86d8a-2b5f-4ef7-89ab-eb44d3c23015"
+										"2c524069-8a6e-4c0c-b980-e0cd7ce4d470"
 									]
 								}
 							},

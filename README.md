@@ -292,10 +292,10 @@ After each application has started up, the REST endpoints are exposed through th
 In prod, the spring profile is set to prod before running the application (SPRING_PROFILES_ACTIVE=prod). This ensures 
 that the development local database does not spin up (docker compose up is not called).
 
-### Example Postman Collection
+### Sample Postman Collection
 
-A Postman collection with all available endpoints is available in the project, inside the example folder. Link:
-[Postman Collection](example/postman_collection.json)
+A Postman collection with all available endpoints is available in the project, inside the samples folder. Link:
+[Postman Collection](samples/postman_collection.json)
 
 ## Authentication
 
@@ -332,7 +332,7 @@ Currently, the only client approved for authentication is Postman.
 
 ### Make User an Admin
 
-![img_1.png](admin.png)
+![img_1.png](docs/admin.png)
 
 ### Getting all Users
 
