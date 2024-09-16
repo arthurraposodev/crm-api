@@ -21,7 +21,7 @@ public class GetCustomerByIdHandler {
     public CustomerQuery handle(final String id) {
         final UUID customerId = UUIDUtil.toUUID(id);
         final CustomerQuery customerQuery = findCustomerById(customerId);
-        final String preSignedUrl = fileStorageHandler.generatePresignedGetUrl(customerQuery.getPhotoUrl());
+        final String preSignedUrl = fileStorageHandler.generatePresignedGetUrl(UUIDUtil.toUUID(customerQuery.getCustomerId()));
 
         customerQuery.setPhotoUrl(preSignedUrl);
         return customerQuery;

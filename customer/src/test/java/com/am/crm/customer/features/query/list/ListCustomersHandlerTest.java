@@ -45,13 +45,11 @@ class ListCustomersHandlerTest {
         customer1.setCustomerId(UUID.randomUUID());
         customer1.setName("John");
         customer1.setSurname("Doe");
-        customer1.setPhotoKey("photo-key-1");
 
         Customer customer2 = new Customer();
         customer2.setCustomerId(UUID.randomUUID());
         customer2.setName("Jane");
         customer2.setSurname("Smith");
-        customer2.setPhotoKey("photo-key-2");
 
         List<Customer> customers = Arrays.asList(customer1, customer2);
 
@@ -68,8 +66,8 @@ class ListCustomersHandlerTest {
         customerQuery2.setPhotoUrl("http://presigned-url-2");
 
         when(customerRepository.findAll()).thenReturn(customers);
-        when(fileStorageHandler.generatePresignedGetUrl("photo-key-1")).thenReturn("http://presigned-url-1");
-        when(fileStorageHandler.generatePresignedGetUrl("photo-key-2")).thenReturn("http://presigned-url-2");
+        when(fileStorageHandler.generatePresignedGetUrl(customer1.getCustomerId())).thenReturn("http://presigned-url-1");
+        when(fileStorageHandler.generatePresignedGetUrl(customer2.getCustomerId())).thenReturn("http://presigned-url-2");
         when(customerMapper.toDto(any(Customer.class))).thenReturn(customerQuery1, customerQuery2);
 
         // Act
@@ -90,7 +88,7 @@ class ListCustomersHandlerTest {
         assertEquals("http://presigned-url-2", resultQuery2.getPhotoUrl());
 
         verify(customerRepository).findAll();
-        verify(fileStorageHandler, times(2)).generatePresignedGetUrl(anyString());
+        verify(fileStorageHandler, times(2)).generatePresignedGetUrl(any(UUID.class));
         verify(customerMapper, times(2)).toDto(any(Customer.class));
     }
 
@@ -107,42 +105,7 @@ class ListCustomersHandlerTest {
         assertTrue(result.isEmpty());
 
         verify(customerRepository).findAll();
-        verify(fileStorageHandler, never()).generatePresignedGetUrl(anyString());
+        verify(fileStorageHandler, never()).generatePresignedGetUrl(any(UUID.class));
         verify(customerMapper, never()).toDto(any(Customer.class));
-    }
-
-    @Test
-    void handle_ShouldHandleCustomersWithNullPhotoKey() {
-        // Arrange
-        Customer customer = new Customer();
-        customer.setCustomerId(UUID.randomUUID());
-        customer.setName("John");
-        customer.setSurname("Doe");
-        customer.setPhotoKey(null);
-
-        CustomerQuery customerQuery = new CustomerQuery();
-        customerQuery.setCustomerId(customer.getCustomerId().toString());
-        customerQuery.setName("John");
-        customerQuery.setSurname("Doe");
-        customerQuery.setPhotoUrl(null);
-
-        when(customerRepository.findAll()).thenReturn(List.of(customer));
-        when(customerMapper.toDto(any(Customer.class))).thenReturn(customerQuery);
-
-        // Act
-        List<CustomerQuery> result = listCustomersHandler.handle();
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(1, result.size());
-
-        CustomerQuery resultQuery = result.get(0);
-        assertEquals("John", resultQuery.getName());
-        assertEquals("Doe", resultQuery.getSurname());
-        assertNull(resultQuery.getPhotoUrl());
-
-        verify(customerRepository).findAll();
-        verify(fileStorageHandler).generatePresignedGetUrl(null);
-        verify(customerMapper).toDto(any(Customer.class));
     }
 }

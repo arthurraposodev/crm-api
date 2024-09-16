@@ -60,7 +60,7 @@ class CreateCustomerHandlerTest {
         customerQuery.setSurname("Doe");
 
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
-        when(fileStorageHandler.generatePresignedPutUrl(anyString())).thenReturn("http://presigned-url");
+        when(fileStorageHandler.generatePresignedPutUrl(any())).thenReturn("http://presigned-url");
 
         // Act
         CustomerQuery result = createCustomerHandler.handle(command);
@@ -78,10 +78,9 @@ class CreateCustomerHandlerTest {
         assertEquals("John", capturedCustomer.getName());
         assertEquals("Doe", capturedCustomer.getSurname());
         assertNotNull(capturedCustomer.getCustomerId());
-        assertNotNull(capturedCustomer.getPhotoKey());
 
         // Verify that pre-signed URL was generated
-        verify(fileStorageHandler).generatePresignedPutUrl(capturedCustomer.getPhotoKey());
+        verify(fileStorageHandler).generatePresignedPutUrl(capturedCustomer.getCustomerId());
     }
 
     @Test

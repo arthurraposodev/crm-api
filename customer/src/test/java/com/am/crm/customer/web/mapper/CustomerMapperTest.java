@@ -27,7 +27,6 @@ class CustomerMapperTest {
         assertEquals("Doe", customer.getSurname());
         assertNull(customer.getId());
         assertNull(customer.getCustomerId());
-        assertNull(customer.getPhotoKey());
         assertNull(customer.getCreatedBy());
         assertNull(customer.getUpdatedBy());
         assertNull(customer.getCreatedAt());
@@ -40,7 +39,6 @@ class CustomerMapperTest {
         customer.setName("Jane");
         customer.setSurname("Smith");
         customer.setCustomerId(UUID.randomUUID());
-        customer.setPhotoKey("photo-key");
 
         CustomerQuery query = mapper.toDto(customer);
 

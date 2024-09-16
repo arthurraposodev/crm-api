@@ -26,7 +26,7 @@ public class UpdateCustomerHandler {
         updateCustomerFields(command, customer);
 
         if (Boolean.TRUE.equals(command.getChangePhoto())) {
-            return handlePhotoUpdate(customerId, customer);
+            return handlePhotoUpdate(customer);
         }
 
         return saveAndMapCustomer(customer);
@@ -47,20 +47,13 @@ public class UpdateCustomerHandler {
         customer.setUpdatedBy(SecurityHandler.getCurrentUsername());
     }
 
-    private CustomerQuery handlePhotoUpdate(final String customerId, final Customer customer) {
-        final String objectKey = generatePhotoKey(customerId);
-        customer.setPhotoKey(objectKey);
+    private CustomerQuery handlePhotoUpdate(final Customer customer) {
 
-        final String preSignedUrl = fileStorageHandler.generatePresignedPutUrl(objectKey);
-        final Customer savedCustomer = customerRepository.save(customer);
+        final String preSignedUrl = fileStorageHandler.generatePresignedPutUrl(customer.getCustomerId());
 
-        final CustomerQuery customerDto = customerMapper.toDto(savedCustomer);
+        final CustomerQuery customerDto = customerMapper.toDto(customer);
         customerDto.setPhotoUrl(preSignedUrl);
         return customerDto;
-    }
-
-    private String generatePhotoKey(final String customerId) {
-        return String.format("images/%s.jpg", customerId);
     }
 
     private CustomerQuery saveAndMapCustomer(final Customer customer) {
