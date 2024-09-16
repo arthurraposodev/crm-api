@@ -52,6 +52,7 @@ It's designed for scalable CRUD operations on customers and OAuth 2.0 users.
 - Github Actions CI with "Build Pass" Badge
 - CI/CD on AWS ECS with Docker
 - Paketo Buildpack
+- Spring Profiles
 - Readme
 ---
 
@@ -83,6 +84,30 @@ regularly by the code base. On any change, the specification can be updated and 
 updated API contract.
 
 The API endpoints are also versioned for easy maintenance and updates.
+
+### Vertical Slice Architecture
+
+This project follows a Vertical Slice Architecture approach, where the focus is on organizing the code by feature rather than by layer. 
+Each feature, such as handling customers or users, encapsulates its own domain logic, commands, queries, and controllers. 
+This means that all the relevant code for a single feature, including data access, business logic, and API endpoints, 
+resides within a single vertical slice.
+By structuring the code in this way, each slice is isolated, promoting a cleaner separation of concerns. It becomes 
+easier to work on individual features without affecting others, which enhances maintainability, scalability, and testability.
+For example, the customer-related commands and queries, such as creating, updating, and deleting customers, are bundled 
+together with their respective service, repository, and DTOs. This approach keeps everything needed for a specific 
+functionality in one place, making the development process more efficient.
+
+### CQRS
+
+The project also follows the Command Query Responsibility Segregation (CQRS) pattern. CQRS separates the operations that 
+mutate data (commands) from those that query data (queries). This improves scalability and performance by allowing each side to 
+scale independently based on its needs.
+In the customer service, the application uses dedicated handlers for commands like CreateCustomerHandler or UpdateCustomerHandler, 
+and separate handlers for queries like ListCustomersHandler or GetCustomerByIdHandler. This separation enables optimized 
+handling of complex business logic for updates, while providing faster, simplified query operations.
+CQRS, in combination with the vertical slice architecture, ensures that the code is both clean and easy to extend. 
+Each command and query is independent and encapsulated, making the addition of new features or modifications to 
+existing ones straightforward without introducing side effects.
 
 ### Dependency Management
 
@@ -123,6 +148,22 @@ The customer service uses a PostgreSQL database for saving and retrieving custom
 the customer service uses a file storage provider, which is currently AWS S3. The images do not go directly through the API service, to 
 preserve bandwidth and reduce latency.
 
+## Database
+
+The script for initializing the table in the database is available in the customer module in the resources folder. Our customers
+have available the following properties:
+
+- id
+- name
+- surname
+- customer_id
+- created_by
+- updated_by
+- created_at
+- updated_at
+- created_by
+- updated_by
+
 ### AWS
 
 #### Compute
@@ -133,7 +174,9 @@ management of the underlying capacity.
 #### Storage
 
 An PostgreSQL instance is deployed on AWS RDS, with automatic snapshots and updates, which houses the customer table.
-An S3 bucket is used to store profile images, with automatic encryption and versioning.
+An S3 bucket is used to store profile images, with automatic encryption and versioning. All images are uploaded with pre-
+signed urls with write capabilities, available for 15 minutes after creating the user or calling the update method with changePhoto
+set to true. Similarly, the image is only available for 15 minutes after calling one of the query endpoints.
 The Docker images are deployed on AWS Elastic Container Registry (ECR), which is a fully managed private 
 Docker container registry.
 
@@ -165,7 +208,7 @@ The deployment is done using the AWS ECS service.
 
 The steps are:
 
-![img_1.png](docs/img_1.png)
+![img_1.png](docs/cicd.png)
 
 - The developer creates a new branch and pushes it to the repository.
 - The developer creates a pull request.
@@ -246,9 +289,12 @@ mvn spring-boot:run
 
 After each application has started up, the REST endpoints are exposed through the gateway on port 8080 according to the OpenAPI 3 standard.
 
+In prod, the spring profile is set to prod before running the application (SPRING_PROFILES_ACTIVE=prod). This ensures 
+that the development local database does not spin up (docker compose up is not called).
+
 ### Example Postman Collection
 
-A Postman collection with example requests is also available in the project, inside example/. Link:
+A Postman collection with all available endpoints is available in the project, inside the example folder. Link:
 [Postman Collection](example/postman_collection.json)
 
 ## Authentication
@@ -282,13 +328,31 @@ Currently, the only client approved for authentication is Postman.
 
 ### Creating a new User
 
+![img.png](docs/newUser.png)
 
+### Make User an Admin
+
+![img_1.png](admin.png)
 
 ### Getting all Users
 
+![img_1.png](getUsers.png)
+
 ### Creating a new Customer
 
+![img_1.png](createCustomer.png)
+
+### Uploading Photo to S3
+
+![img_1.png](uploadImage.png)
+
 ### Getting all Customers
+
+![img_1.png](gettingCustomers.png)
+
+### Accessing Url of Image from Getting All Customer's Last Entry (Only Available for 15 Minutes - Presigned)
+
+![img_1.png](duck.png)
 
 ## 📂 Repository Structure
 
@@ -320,10 +384,29 @@ Currently, the only client approved for authentication is Postman.
 ```
 ---
 ## 🧪 Tests
-Test folders follow the same structure as source folders. This project respects an 85% code coverage target.
+Test folders follow the same structure as source folders. This project respects an 80% code coverage target (excluding generated classes).
 ```bash
+cd gateway
+```
+### Gateway
+```bash
+cd gateway
 mvn test
 ```
+### User Service
+```bash
+cd user
+mvn test
+```
+### Customer Service
+```bash
+cd customer
+mvn test
+```
+
+![img_1.png](customerTest.png)
+![img_1.png](userTest.png)
+---
 
 ## 🤝 Contributing
 Contributions are welcome! Please follow these steps:
