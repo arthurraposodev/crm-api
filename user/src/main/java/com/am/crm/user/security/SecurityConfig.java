@@ -21,7 +21,7 @@ public class SecurityConfig {
                 // Authorize requests based on the JWT token
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("actuator/health").permitAll()
+                                .requestMatchers("/actuator/health").permitAll()
                                 .anyRequest().hasAuthority("GROUP_admins")
                 )
                 // Enable JWT validation using OAuth2 Resource Server

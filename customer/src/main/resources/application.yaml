@@ -9,7 +9,7 @@ logging:
 management:
   endpoints:
     web:
-      base-path: /customers/actuator
+      base-path: /actuator
 server:
   port: 8082
 spring:

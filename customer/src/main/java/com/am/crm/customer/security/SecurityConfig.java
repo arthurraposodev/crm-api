@@ -20,7 +20,7 @@ public class SecurityConfig {
         return http
                 // Authorize requests based on JWT tokens
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/customers/actuator/health").permitAll()  // Allow public access to health check
+                        .requestMatchers("/actuator/health").permitAll()  // Allow public access to health check
                         .anyRequest().authenticated()  // Authenticate all other requests
                 )
                 // Enable JWT validation using OAuth2 Resource Server
