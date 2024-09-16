@@ -5,16 +5,16 @@
 <h3>◦ Simplified customer interactions. Close more deals.</h3>
 <h3>◦ Developed with the software and tools below.</h3>
     
-<img src="https://github.com/kaireaver/crm-api/actions/workflows/maven.yml/badge.svg" alt="buildBadge" />
+<img src="https://github.com/arthurraposodev/crm-api/actions/workflows/maven.yml/badge.svg" alt="buildBadge" />
 <p align="center">
 <img src="https://img.shields.io/badge/YAML-CB171E.svg?style=flat-square&logo=YAML&logoColor=white" alt="YAML" />
 <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=flat-square&logo=GitHub-Actions&logoColor=white" alt="GitHub%20Actions" />
 <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=flat-square&logo=openjdk&logoColor=white" alt="java" />
 </p>
-<img src="https://img.shields.io/github/license/kaireaver/crm-api?style=flat-square&color=5D6D7E" alt="GitHub license" />
-<img src="https://img.shields.io/github/last-commit/kaireaver/crm-api?style=flat-square&color=5D6D7E" alt="git-last-commit" />
-<img src="https://img.shields.io/github/commit-activity/m/kaireaver/crm-api?style=flat-square&color=5D6D7E" alt="GitHub commit activity" />
-<img src="https://img.shields.io/github/languages/top/kaireaver/crm-api?style=flat-square&color=5D6D7E" alt="GitHub top language" />
+<img src="https://img.shields.io/github/license/arthurraposodev/crm-api?style=flat-square&color=5D6D7E" alt="GitHub license" />
+<img src="https://img.shields.io/github/last-commit/arthurraposodev/crm-api?style=flat-square&color=5D6D7E" alt="git-last-commit" />
+<img src="https://img.shields.io/github/commit-activity/m/arthurraposodev/crm-api?style=flat-square&color=5D6D7E" alt="GitHub commit activity" />
+<img src="https://img.shields.io/github/languages/top/arthurraposodev/crm-api?style=flat-square&color=5D6D7E" alt="GitHub top language" />
 </div>
 
 ---
@@ -67,7 +67,7 @@ It's designed for scalable CRUD operations on customers and OAuth 2.0 users.
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/kaireaver/crm-api
+git clone https://github.com/arthurraposodev/crm-api
 ```
 
 ### Build the Project
@@ -157,7 +157,7 @@ Currently the only client approved for authentication is Postman.
 
 | File                                                                                                                                        | Summary                                                                                                                                                                                                                                                                    |
 |---------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [CustomerApiApplication.java](https://github.com/kaireaver/crm-api/blob/main/src/main/java/com/am/crm/customer/CustomerApiApplication.java) | The code represents the main class of a CRM customers API. It is a Spring Boot application that startups up the embedded web server and uses WebMVC. The code also scans for configuration properties and starts the application using the SpringApplication.run() method. |
+| [CustomerApiApplication.java](https://github.com/arthurraposodev/crm-api/blob/main/src/main/java/com/am/crm/customer/CustomerApiApplication.java) | The code represents the main class of a CRM customers API. It is a Spring Boot application that startups up the embedded web server and uses WebMVC. The code also scans for configuration properties and starts the application using the SpringApplication.run() method. |
 
 </details>
 
@@ -171,9 +171,9 @@ mvn test
 ## 🤝 Contributing
 Contributions are welcome! Please follow these steps:
 
-- **[Submit Pull Requests](https://github.com/kaireaver/crm-api/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-- **[Join the Discussions](https://github.com/kaireaver/crm-api/discussions)**: Share your insights, provide feedback, or ask questions.
-- **[Report Issues](https://github.com/kaireaver/crm-api/issues)**: Submit bugs found or log feature requests for KAIREAVER.
+- **[Submit Pull Requests](https://github.com/arthurraposodev/crm-api/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **[Join the Discussions](https://github.com/arthurraposodev/crm-api/discussions)**: Share your insights, provide feedback, or ask questions.
+- **[Report Issues](https://github.com/arthurraposodev/crm-api/issues)**: Submit bugs found or log feature requests for arthurraposodev.
 
 ## 📄 License
 ```bash
