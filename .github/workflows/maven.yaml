@@ -130,7 +130,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
-      - name: Deploy to ECS dev cluster
+      - name: Deploy to ECS dev cluster - Gateway
         run: |
           CLUSTER_NAME=ecs-crm-dev-2
           SERVICE_NAME=gateway-service-2
