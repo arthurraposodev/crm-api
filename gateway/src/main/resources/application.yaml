@@ -10,7 +10,7 @@ spring:
             client-secret: ${GATEWAY_CLIENT_SECRET}
         provider:
           cognito:
-            issuer-uri: ${GATEWAY_ISSUER_URI}
+            issuer-uri: ${ISSUER_URI}
   cloud:
     gateway:
       default-filters:
