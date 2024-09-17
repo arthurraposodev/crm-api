@@ -11,10 +11,6 @@ server:
 spring:
   application:
     name: Customer API
-  docker:
-    compose:
-      lifecycle-management: start_and_stop
-      file: ../compose.yaml
   jpa:
     hibernate:
       ddl-auto: create
