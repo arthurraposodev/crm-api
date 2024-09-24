@@ -27,19 +27,6 @@ public class S3Handler implements FileStorageHandler {
     @Value("${aws.s3.bucket-name}")
     private String bucketName;
 
-    public boolean doesObjectExist(String objectKey) {
-        try {
-            HeadObjectRequest headObjectRequest = HeadObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(objectKey)
-                    .build();
-            s3Client.headObject(headObjectRequest);
-            return true;
-        } catch (NoSuchKeyException e) {
-            return false;
-        }
-    }
-
     // Generate Pre-Signed URL for PUT (Image Upload)
     public String generatePresignedPutUrl(UUID customerId) {
         String objectKey = generatePhotoKey(customerId.toString());
@@ -63,6 +50,19 @@ public class S3Handler implements FileStorageHandler {
 
         PresignedGetObjectRequest presignedRequest = s3Presigner.presignGetObject(presignRequest);
         return presignedRequest.url().toString();
+    }
+
+    private boolean doesObjectExist(String objectKey) {
+        try {
+            HeadObjectRequest headObjectRequest = HeadObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(objectKey)
+                    .build();
+            s3Client.headObject(headObjectRequest);
+            return true;
+        } catch (NoSuchKeyException e) {
+            return false;
+        }
     }
 
     private String generatePhotoKey(final String customerId) {
