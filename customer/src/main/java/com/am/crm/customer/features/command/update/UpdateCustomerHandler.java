@@ -29,7 +29,7 @@ public class UpdateCustomerHandler {
             return handlePhotoUpdate(customer);
         }
 
-        return saveAndMapCustomer(customer);
+        return customerMapper.toDto(customer);
     }
 
     private Customer findCustomerById(final UUID customerId) {
@@ -45,6 +45,7 @@ public class UpdateCustomerHandler {
             customer.setSurname(command.getSurname());
         }
         customer.setUpdatedBy(SecurityHandler.getCurrentUsername());
+        customerRepository.save(customer);
     }
 
     private CustomerQuery handlePhotoUpdate(final Customer customer) {
@@ -54,10 +55,5 @@ public class UpdateCustomerHandler {
         final CustomerQuery customerDto = customerMapper.toDto(customer);
         customerDto.setPhotoUrl(preSignedUrl);
         return customerDto;
-    }
-
-    private CustomerQuery saveAndMapCustomer(final Customer customer) {
-        final Customer savedCustomer = customerRepository.save(customer);
-        return customerMapper.toDto(savedCustomer);
     }
 }
