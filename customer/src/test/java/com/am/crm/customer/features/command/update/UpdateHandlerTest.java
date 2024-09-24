@@ -109,6 +109,9 @@ class UpdateCustomerHandlerTest {
             // Assert
             assertNotNull(result);
             assertEquals("http://presigned-url", result.getPhotoUrl());
+            verify(customerRepository).save(argThat(customer ->
+                    "test_user".equals(customer.getUpdatedBy())
+            ));
             verify(fileStorageHandler).generatePresignedPutUrl(UUID.fromString(customerId));
         }
     }
