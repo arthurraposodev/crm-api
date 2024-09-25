@@ -1,0 +1,87 @@
+volumes:
+  postgres:
+  pgadmin:
+
+services:
+  postgres:
+    container_name: sessionz_postgres
+    image: 'postgres:latest'
+    environment:
+      POSTGRES_DB: crm
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: dbadmin
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - '5432'
+    restart: unless-stopped
+    networks:
+      - crm_network
+
+  pgadmin:
+    container_name: sessionz_pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@localhost.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_PORT: 5050
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+      - ./docker_pgadmin_servers.json:/pgadmin4/servers.json
+    ports:
+      - '5050:5050'
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - "/bin/echo 'postgres:5432:*:dbadmin:password' > /tmp/pgpassfile && chmod 600 /tmp/pgpassfile && /entrypoint.sh"
+    networks:
+      - crm_network
+
+  crmgateway:
+    container_name: crmgateway
+    build: ./gateway
+    image: crm_gateway:latest
+    environment:
+      - COGNITO_USER_POOL=${COGNITO_USER_POOL}
+      - ISSUER_URI=${ISSUER_URI}
+      - CUSTOMER_SERVER_URI=${CUSTOMER_SERVER_URI}
+      - USER_SERVER_URI=${USER_SERVER_URI}
+    ports:
+      - "8080:8080"
+    networks:
+      - crm_network
+
+  crmuser:
+    container_name: crmuser
+    build: ./user
+    image: crm_user:latest
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - COGNITO_USER_POOL=${COGNITO_USER_POOL}
+      - ISSUER_URI=${ISSUER_URI}
+    ports:
+      - "8081:8081"
+    networks:
+      - crm_network
+
+  crmcustomer:
+    container_name: crmcustomer
+    build: ./customer
+    image: crm_customer:latest
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_BUCKET_NAME=${AWS_BUCKET_NAME}
+      - COGNITO_USER_POOL=${COGNITO_USER_POOL}
+      - ISSUER_URI=${ISSUER_URI}
+    ports:
+      - "8082:8082"
+    networks:
+      - crm_network
+
+networks:
+  crm_network:
+    driver: bridge
