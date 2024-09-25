@@ -21,3 +21,11 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: ${ISSUER_URI}
+  docker:
+    compose:
+      file: ./compose_db.yaml
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://sessionz_postgres:5432/crm}
+    username: ${DATABASE_USERNAME:dbadmin}
+    password: ${DATABASE_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver

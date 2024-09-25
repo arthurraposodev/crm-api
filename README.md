@@ -251,7 +251,8 @@ Please set the following environment variables according to the service. Please 
 ### Gateway
 
 - ISSUER_URI: The URI of the OAuth 2.0 issuer.
-- SERVER_URI: The URI of the server.
+- USER_SERVER_URI: The URI of the user service.
+- CUSTOMER_SERVER_URI: The URI of the customer service.
 - COGNITO_USER_POOL: The Cognito user pool ID.
 
 ### User Service
@@ -288,6 +289,17 @@ mvn spring-boot:run
 ```
 
 After each application has started up, the REST endpoints are exposed through the gateway on port 8080 according to the OpenAPI 3 standard.
+
+### Makefile
+
+This project also includes a Makefile. To easily run the services locally, create a .env file in the top-level directory 
+with the environment variables descripted above for each services to run. After this, execute the make command:
+
+```bash
+make
+```
+
+### Production
 
 In prod, the spring profile is set to prod before running the application (SPRING_PROFILES_ACTIVE=prod). This ensures 
 that the development local database does not spin up (docker compose up is not called).
