@@ -71,7 +71,6 @@ class CreateCustomerHandlerTest {
         assertEquals("Doe", result.getSurname());
         assertEquals("http://presigned-url", result.getPhotoUrl());
 
-        // Verify that customerRepository.save was called with the correct customer
         ArgumentCaptor<Customer> customerCaptor = ArgumentCaptor.forClass(Customer.class);
         verify(customerRepository).save(customerCaptor.capture());
         Customer capturedCustomer = customerCaptor.getValue();

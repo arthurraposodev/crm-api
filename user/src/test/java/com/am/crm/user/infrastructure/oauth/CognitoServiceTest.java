@@ -32,7 +32,6 @@ class CognitoServiceTest {
     void setUp() throws NoSuchFieldException, IllegalAccessException {
         MockitoAnnotations.openMocks(this);
         cognitoService = new CognitoService(cognitoClient, userMapper);
-        // Use reflection to set the userPoolId
         Field userPoolIdField = CognitoService.class.getDeclaredField("userPoolId");
         userPoolIdField.setAccessible(true);
         userPoolIdField.set(cognitoService, TEST_USER_POOL_ID);
@@ -235,6 +234,4 @@ class CognitoServiceTest {
         assertTrue(result.isEmpty());
         verify(cognitoClient).adminGetUser(any(AdminGetUserRequest.class));
     }
-
-    // Add more tests for other methods (makeUserAdmin, deleteUser, updateUserAttributes, findByUsername)
 }

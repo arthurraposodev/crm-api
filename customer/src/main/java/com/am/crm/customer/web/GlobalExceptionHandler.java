@@ -16,7 +16,6 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Handle invalid JSON or type errors (e.g., invalid boolean value)
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleInvalidJson(HttpMessageNotReadableException ex) {
         return buildErrorResponse("Invalid JSON input", HttpStatus.BAD_REQUEST, List.of(ex.getMessage()));
@@ -37,7 +36,6 @@ public class GlobalExceptionHandler {
         return buildErrorResponse("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR, List.of(ex.getMessage()));
     }
 
-    // Handle validation errors (method argument not valid)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationError(MethodArgumentNotValidException ex, WebRequest request) {
         List<String> validationErrors = ex.getBindingResult()
@@ -49,7 +47,6 @@ public class GlobalExceptionHandler {
         return buildErrorResponse("Validation Failed", HttpStatus.BAD_REQUEST, validationErrors);
     }
 
-    // Format field error for better readability
     private String formatFieldError(FieldError fieldError) {
         return String.format("Field '%s': %s (rejected value: %s)", fieldError.getField(), fieldError.getDefaultMessage(), fieldError.getRejectedValue());
     }

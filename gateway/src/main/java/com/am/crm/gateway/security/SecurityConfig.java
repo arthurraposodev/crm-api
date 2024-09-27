@@ -15,18 +15,12 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http.authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/actuator/health").permitAll()  // Allow unauthenticated access to /actuator/health
-
-                        // Authenticate other routes
+                        .pathMatchers("/actuator/health").permitAll()
                         .anyExchange().permitAll())
-
-                // Enable OAuth2 login
                 .oauth2Login(withDefaults())
                 .oidcLogout(logout -> logout
                         .backChannel(Customizer.withDefaults())
                 )
-
-                // Disable CSRF for WebFlux
                 .csrf(ServerHttpSecurity.CsrfSpec::disable);
         return http.build();
     }
