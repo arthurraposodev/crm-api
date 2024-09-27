@@ -18,24 +18,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // Authorize requests based on the JWT token
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/actuator/health").permitAll()
                                 .anyRequest().hasAuthority("GROUP_admins")
                 )
-                // Enable JWT validation using OAuth2 Resource Server
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
-                .csrf(AbstractHttpConfigurer::disable);  // Disable CSRF for stateless APIs
+                .csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
 
-    // JWT Converter to map Cognito groups to Spring Security roles
     private JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-        // Map Cognito groups to Spring Security roles
         grantedAuthoritiesConverter.setAuthorityPrefix("GROUP_");
         grantedAuthoritiesConverter.setAuthoritiesClaimName("cognito:groups");
 

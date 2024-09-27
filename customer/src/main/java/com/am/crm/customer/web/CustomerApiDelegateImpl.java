@@ -23,31 +23,26 @@ public class CustomerApiDelegateImpl implements V1ApiDelegate {
     private final GetCustomerByIdHandler getCustomerByIdHandler;
     private final DeleteCustomerHandler deleteCustomerHandler;
 
-    // 1. List all customers
     @Override
     public ResponseEntity<List<CustomerQuery>> listCustomers() {
         return ResponseEntity.ok(listCustomersHandler.handle());
     }
 
-    // 2. Get a customer by ID
     @Override
     public ResponseEntity<CustomerQuery> getCustomerById(String customerId) {
         return ResponseEntity.ok(getCustomerByIdHandler.handle(customerId));
     }
 
-    // 3. Create a new customer
     @Override
     public ResponseEntity<CustomerQuery> createCustomer(CreateCustomerCommand command) {
         return ResponseEntity.status(HttpStatus.CREATED).body(createCustomerHandler.handle(command));
     }
 
-    // 4. Update a customer
     @Override
     public ResponseEntity<CustomerQuery> updateCustomer(String customerId, UpdateCustomerCommand updateCustomerCommand) {
         return ResponseEntity.ok(updateCustomerHandler.handle(customerId, updateCustomerCommand));
     }
 
-    // 5. Delete a customer
     @Override
     public ResponseEntity<Void> deleteCustomer(String id) {
         deleteCustomerHandler.handle(id);

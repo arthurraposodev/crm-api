@@ -31,22 +31,18 @@ class HandlerConfigTest {
 
     @BeforeEach
     void setUp() {
-        // Initialize mocks
         MockitoAnnotations.openMocks(this);
-        // Initialize the configuration class
         handlerConfig = new HandlerConfig();
     }
 
     @Test
     void testCreateCustomerHandler() {
-        // Test if CreateCustomerHandler bean is correctly created
         CreateCustomerHandler createCustomerHandler = handlerConfig.createCustomerHandler(customerRepository, customerMapper, s3Service);
         assertNotNull(createCustomerHandler, "CreateCustomerHandler should not be null");
     }
 
     @Test
     void testDeleteCustomerHandler() {
-        // Test if DeleteCustomerHandler bean is correctly created
         DeleteCustomerHandler deleteCustomerHandler = handlerConfig.deleteCustomerHandler(customerRepository);
         assertNotNull(deleteCustomerHandler, "DeleteCustomerHandler should not be null");
     }

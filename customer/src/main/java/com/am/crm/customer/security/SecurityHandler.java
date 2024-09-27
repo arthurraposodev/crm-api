@@ -8,7 +8,6 @@ import org.springframework.security.oauth2.jwt.Jwt;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SecurityHandler {
-    // Extract the current username from the SecurityContext
     public static String getCurrentUsername() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

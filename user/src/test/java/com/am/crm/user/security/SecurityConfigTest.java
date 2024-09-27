@@ -20,7 +20,7 @@ class SecurityConfigTest {
     @Test
     void actuatorHealth_shouldBeAccessibleWithoutAuthentication() throws Exception {
         mockMvc.perform(get("/actuator/health"))
-                .andExpect(status().is5xxServerError()); // Not Unauthorized or Forbidden
+                .andExpect(status().is5xxServerError());
     }
 
     @Test
@@ -33,7 +33,7 @@ class SecurityConfigTest {
     @WithMockUser(authorities = "GROUP_admins")
     void protectedEndpoint_shouldAllowAccessForAdmins() throws Exception {
         mockMvc.perform(get("/v1/users"))
-                .andExpect(status().is5xxServerError()); // Not Unauthorized or Forbidden
+                .andExpect(status().is5xxServerError());
     }
 
     @Test
